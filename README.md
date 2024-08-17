@@ -1,7 +1,4 @@
-## Developed live on twitch
-[ThePrimeagen](https://twitch.tv/ThePrimeagen)
-
-### How It Works
+## How It Works
 ```bash
 npm install
 ```
@@ -34,7 +31,7 @@ src/day2
 ...
 ```
 
-#### Testing
+## Testing
 ```
 npx test [fileName]
 ```
