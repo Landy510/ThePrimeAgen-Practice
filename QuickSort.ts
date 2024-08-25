@@ -1,26 +1,29 @@
 function qs(arr: number[], low: number, high: number): void {
   if(low >= high) return;
   const pivotIndex = partition(arr, low, high);
-  qs(arr, low, pivotIndex - 1);
-  qs(arr, pivotIndex + 1, high);
+  qs(arr, low, pivotIndex-1);
+  qs(arr, pivotIndex+1, high);
 }
 
 function partition(arr: number[], low: number, high: number): number {
   const pivot = arr[high];
-  let i = low - 1;
+  let idx = low - 1;
 
   for(let j = low; j < high; j++) {
-    if(arr[j] <= pivot) {
-      i++;
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
+      if(arr[j] < pivot) {
+          idx++;
+          [arr[j], arr[idx]] = [arr[idx], arr[j]];
+      }
   }
-  
-  // move pivot to the position the is behind the last element which is smaller than pivot.
-  [arr[i+1],arr[high]] = [arr[high], arr[i+1]];
-  return i + 1;
+
+  // switch pivot's position(arr[high]) with the position that is next to(arr[idx+1]) the last element which lower than pivot
+  const toBePivotIndex = idx + 1;
+  arr[high] = arr[toBePivotIndex];
+  arr[toBePivotIndex] = pivot;
+
+  return toBePivotIndex;
 }
 
 export default function quick_sort(arr: number[]): void {
-  qs(arr, 0, arr.length - 1);
+  qs(arr, 0, arr.length-1);
 }
