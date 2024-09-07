@@ -9,3 +9,6 @@ There are two cases in deletion that you need to deal with:
 
 ### **Case2)** the node has two child nodes
 - In this scenario, we replace the node with the in-order successor, which is the left-most node of the right subtree.
+
+### Demo
+![deletionOnBST](deletionOnBST.png)
