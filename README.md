@@ -1,37 +1,11 @@
-## How It Works
-```bash
-npm install
-```
+## What is this for?
+This is the implementation of deletion of BST.
 
-edit the `ligma.config.js` file
-```javascript
-module.exports = {
-    dsa: [
-        "InsertionSort",
-        "MergeSort",
-        "Queue",
-        "Stack",
-        "QuickSort",
-        "DijkstraList",
-        "PrimsList",
-    ],
-}
-```
+There are two cases in deletion that you need to deal with:
 
-create a day of katas, this will use the list in the `ligma.config.js`.
-```bash
-npm run generate
-```
+### **Case1)** the node which is the leaf node of BST or has only one child node.
+- If the node is a leaf, it is simply removed.
+- If the node has one child, it is replaced by its child.
 
-this will progressively create folders named
-
-```
-src/day1
-src/day2
-...
-```
-
-## Testing
-```
-npx test [fileName]
-```
+### **Case2)** the node has two child nodes
+- In this scenario, we replace the node with the in-order successor, which is the left-most node of the right subtree.
