@@ -66,23 +66,23 @@ export default class Trie {
     }
 
     searchWord(word: string): TrieNode | false {
-        var currentValue = this.root;
+        var currentNode = this.root;
         for(let char of word) {
-            if(!currentValue.children[char]) return false;
-            currentValue = currentValue.children[char];
+            if(!currentNode.children[char]) return false;
+            currentNode = currentNode.children[char];
         }
-
-        return currentValue;
+        if(!currentNode.isEndOfWord) return false;
+        return currentNode;
     }
 
-    find(partial: string): string[] {
-        var searchedResult = this.searchWord(partial);
-        if(searchedResult) {
-            let suggestions = [];
-            if(searchedResult.isEndOfWord) {
-                suggestions.push(partial);
+    find(prefix: string): string[] {
+        var searchedNode = this.searchWord(prefix);
+        if(searchedNode) {
+            let suggestions = [] as string[];
+            if(searchedNode.isEndOfWord) {
+                suggestions.push(prefix);
             }
-            return  this._find(searchedResult, partial, suggestions);
+            return this._find(searchedNode, prefix, suggestions);
         }
 
         return [];
